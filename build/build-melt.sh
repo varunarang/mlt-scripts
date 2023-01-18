@@ -908,7 +908,7 @@ function get_subproject {
           # Change to it
           cmd cd $1 || die "Unable to change to directory $1"
           debug "About to look for git repo"
-          git --depth 1 --no-pager status 2>&1 | grep "fatal" &> /dev/null
+          git --no-pager status 2>&1 | grep "fatal" &> /dev/null
           if test 0 != $? ; then
               # Found git repo
               debug "Found git repo, will update"
@@ -920,7 +920,7 @@ function get_subproject {
                 MAIN_GIT_BRANCH=master
               fi
               cmd git checkout $MAIN_GIT_BRANCH || die "Unable to git checkout $MAIN_GIT_BRANCH"
-              cmd git --depth 1 --no-pager pull $REPOLOC master || die "Unable to git pull sources for $1"
+              cmd git --no-pager pull $REPOLOC master || die "Unable to git pull sources for $1"
               cmd git checkout $REVISION || die "Unable to git checkout $REVISION"
           else
               # A dir with the expected name, but not a git repo, bailing out
@@ -931,7 +931,7 @@ function get_subproject {
           # No git repo
           debug "No git repo, need to check out"
           feedback_status "Cloning git sources for $1"
-          cmd git --depth 1 --no-pager clone $REPOLOC || die "Unable to git clone source for $1 from $REPOLOC"
+          cmd git --no-pager clone --depth 1 $REPOLOC || die "Unable to git clone source for $1 from $REPOLOC"
           cmd cd $1 || die "Unable to change to directory $1"
           cmd git checkout $REVISION || die "Unable to git checkout $REVISION"
       fi
@@ -1287,7 +1287,7 @@ function get_dir_info {
   REPOTYPE=`lookup REPOTYPES $1`
   if test "xgit" = "x$REPOTYPE" ; then
     FIND_STR="\(commit\|Date\)"
-    INFO_TEXT=`git --depth 1 --no-pager log -n1 | grep "$FIND_STR"`
+    INFO_TEXT=`git --no-pager log -n1 | grep "$FIND_STR"`
   else
     FIND_STR="\(Revision\|Last\ Changed\ Date\)"
     INFO_TEXT=`svn info | grep "$FIND_STR"`
