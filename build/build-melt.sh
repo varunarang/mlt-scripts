@@ -560,7 +560,7 @@ function set_globals {
 
   #####
   # lame
-  CONFIG[6]="./configure --prefix=$FINAL_INSTALL_DIR --libdir=$FINAL_INSTALL_DIR/lib --disable-decoder --disable-frontend"
+  CONFIG[6]="./configure --prefix=$FINAL_INSTALL_DIR --libdir=$FINAL_INSTALL_DIR/lib --disable-decoder --disable-frontend --build=aarch64-unknown-linux-gnu"
   CFLAGS_[6]=$CFLAGS
   LDFLAGS_[6]=$LDFLAGS
 
