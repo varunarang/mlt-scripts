@@ -13,6 +13,9 @@
 ################################################################################
 # ARGS AND GLOBALS
 ################################################################################
+# Custom:
+PKG_CONFIG_PATH=/root/eigen_dest
+LD_LIBRARY_PATH=/root/melt/20230118/lib64:$LD_LIBRARY_PATH:/root/melt/20230118/lib
 
 # These are all of the configuration variables with defaults
 INSTALL_DIR="$HOME/melt"
